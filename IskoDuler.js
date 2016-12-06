@@ -1,3 +1,19 @@
+// version info
+current_version = '1.1';
+
+// constants
+latest_jquery = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js';
+latest_version_info = 'https://rawgit.com/DarkPotatoKing/darkpotatoking.github.io/master/latest_version.js';
+
+// messages
+prompt_update = 'Your IskoDuler bookmark is not updated, please delete the current bookmark and get the newest version at:\n\n'
+			  + 'iskoduler.dilimansource.com\n\n';
+prompt_fail = 'There was an error in running the app, please check if you can access:\n\n'
+			+ latest_version_info
+			+ '\n\nIf you can access the above file, try refreshing your browser and click on the bookmark again. '
+			+ 'If it still doesn\'t work, please message our Facebook page.\n\n'
+			+ 'facebook.com/IskoDuler\n';
+
 var iskoduler = function()
 {
 	// get list of enlisted classes
@@ -9,15 +25,11 @@ var iskoduler = function()
 	conflicting_classes = Object.keys(conflictlist);
 
 	// check if the Probability column already exist
-	// if it exists, destroy the column so that you can create a new one
+	// if it exists, return immediately as there is no change in probability
 	// note: this function might no longer be needed for IskoDuler 1.1 and above
 	if ($('#tr_class-info-head th').last().text().trim() == 'Probability')
 	{
-		$('#tr_class-info-head th').last().remove();
-		for (i = 0; i < x.length; i++)
-		{
-			$(x[i]).find('td').last().remove();
-		}
+		return;
 	}
 
 
@@ -74,3 +86,40 @@ var iskoduler = function()
 		$(x[i]).append('<td>' + probabilities[i] + '%</td>');
 	}
 };
+
+// load latest jquery
+jQuery.getScript
+(
+	latest_jquery,
+	// load latest version info
+	function()
+	{
+		jQuery.getScript(latest_version_info)
+		.done
+		(
+			function()
+			{
+				// if IskoDuler is the latest version, run it
+				if (latest_version == current_version)
+				{
+					iskoduler();
+				}
+				// else, prompt user to download new version
+				else
+				{
+					prompt_update += 'current version:\t' + current_version + '\n';
+					prompt_update += 'latest version:\t' + latest_version + '\n';
+					alert(prompt_update);
+				}
+			}
+		)
+		.fail
+		(
+			function()
+			{
+				alert(prompt_fail);
+			}
+		)
+	}
+
+);
