@@ -1,3 +1,1 @@
-var version = {
-	number: function() { return "1.1"; };
-}
+version = '1.1'
