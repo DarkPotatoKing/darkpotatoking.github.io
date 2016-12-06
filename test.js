@@ -1,1 +1,1 @@
-var x = function() { return "lol" };
+var x = function() { alert("lol") };
