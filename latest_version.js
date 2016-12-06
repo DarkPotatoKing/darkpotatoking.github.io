@@ -1,1 +1,3 @@
-latest_version = '1.1';
+var version = {
+	number: function() { return "1.1"; };
+}
