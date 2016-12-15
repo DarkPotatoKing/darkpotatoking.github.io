@@ -164,7 +164,7 @@ var iskoduler = function()
     for (i = 0; i < x.length; i++)
     {
         $(x[i]).append('<td>' + probabilities[i] + '%</td>');
-        $(x[i]).append('<td>' + base_probabilities[i] +  '%&nbsp;<a href="http://www.facebook.com">(?)</a>' + '</td>');
+        $(x[i]).append('<td>' + base_probabilities[i] +  '%&nbsp;<a href="http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063">(?)</a>' + '</td>');
     }
 };
 
