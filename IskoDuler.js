@@ -132,6 +132,20 @@ var iskoduler = function()
     base_probabilities = probabilities.slice();
 
 
+    // computer final probs
+    for (i = 0; i < probabilities.length; ++i)
+    {
+        p = base_probabilities[i];
+        // check for all conflicting classes ranked higher
+        for (j = 0; j < i; ++j)
+        {
+            if (conflict_matrix[i+1][j+1] == 1)
+            {
+                p *= (1.0 - base_probabilities[j]);
+            }
+        }
+        probabilities[i] = p;
+    }
 
 
     // round off final probabilities to the nearest percent
