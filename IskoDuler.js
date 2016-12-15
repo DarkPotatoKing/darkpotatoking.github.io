@@ -14,6 +14,31 @@ prompt_fail = 'There was an error in running the app, please check if you can ac
             + 'If it still doesn\'t work, please message our Facebook page.\n\n'
             + 'facebook.com/IskoDuler\n';
 
+function matrix( rows, cols, defaultValue)
+{
+
+    var arr = [];
+
+    // Creates all lines:
+    for(var i=0; i < rows; i++)
+    {
+
+        // Creates an empty line
+        arr.push([]);
+
+        // Adds cols to the empty line:
+        arr[i].push( new Array(cols));
+
+        for(var j=0; j < cols; j++)
+        {
+            // Initializes:
+            arr[i][j] = defaultValue;
+        }
+    }
+
+    return arr;
+}
+
 var iskoduler = function()
 {
     // get list of enlisted classes
@@ -22,9 +47,11 @@ var iskoduler = function()
     // define variables
     slots_demand_info = [];
     probabilities = [];
+    total_probabilities = [];
     conflicting_classes = Object.keys(conflictlist);
     class_statuses = $("td[id^=td-icon]");
     enlisted_classes_id = []
+    conflict_matrix = matrix(21,21);
 
     // check if the Probability column already exist
     // if it exists, return immediately as there is no change in probability
@@ -75,6 +102,9 @@ var iskoduler = function()
     {
         probabilities[enlisted_classes_id[i]] = 1.0;
     }
+
+
+
 
     // compute finals probs
     for (i = 0; i < conflicting_classes.length; i++)
