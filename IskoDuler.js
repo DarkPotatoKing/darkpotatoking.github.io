@@ -14,6 +14,10 @@ prompt_fail = 'There was an error in running the app, please check if you can ac
             + 'If it still doesn\'t work, please message our Facebook page.\n\n'
             + 'facebook.com/IskoDuler\n';
 
+pre_table_info = $('div[style="float:right; font-weight: bold"]');
+announcement = ["<h1 style='text-align: center'>Note: as of IskoDuler 1.1 using IskoDuler freezes editing. <a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121845411247030/'>(Why?)</a>",
+                "<h2 style='text-align: center'>To edit rankings refresh the page, then edit and save rankings BEFORE using IskoDuler again.</h2>"];
+
 function matrix( rows, cols, defaultValue)
 {
 
@@ -61,6 +65,10 @@ var iskoduler = function()
         return;
     }
 
+
+    // insert announcments
+    $(announcement[0]).insertBefore(pre_table_info);
+    $(announcement[1]).insertBefore(pre_table_info);
 
     // add a new "Probability" column
     $('#tr_class-info-head').append('<th>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>');
