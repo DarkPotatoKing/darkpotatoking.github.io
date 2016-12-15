@@ -18,7 +18,7 @@ pre_table_info = $(`div[style='float:right; font-weight: bold']`);
 announcement = [`<h1 style='text-align: center'>Note: as of IskoDuler 1.1 using IskoDuler freezes editing. <a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121845411247030/'>(Why?)</a>`,
                 `<h2 style='text-align: center'>To edit rankings refresh the page, then edit and save rankings BEFORE using IskoDuler again.</h2>`];
 
-function matrix( rows, cols, defaultValue)
+var matrix = function( rows, cols, defaultValue)
 {
 
     var arr = [];
@@ -41,7 +41,7 @@ function matrix( rows, cols, defaultValue)
     }
 
     return arr;
-}
+};
 
 var iskoduler = function()
 {
@@ -54,7 +54,7 @@ var iskoduler = function()
     base_probabilities = [];
     conflicting_classes = Object.keys(conflictlist);
     class_statuses = $(`td[id^=td-icon]`);
-    enlisted_classes_id = []
+    enlisted_classes_id = [];
     conflict_matrix = matrix(21,21, 0);
 
     // check if the Probability column already exist
