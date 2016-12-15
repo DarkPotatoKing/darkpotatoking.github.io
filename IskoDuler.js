@@ -51,7 +51,7 @@ var iskoduler = function()
     conflicting_classes = Object.keys(conflictlist);
     class_statuses = $("td[id^=td-icon]");
     enlisted_classes_id = []
-    conflict_matrix = matrix(21,21);
+    conflict_matrix = matrix(21,21, 0);
 
     // check if the Probability column already exist
     // if it exists, return immediately as there is no change in probability
@@ -105,6 +105,26 @@ var iskoduler = function()
 
 
 
+    // parse conflicting classes array to int
+    for (var i = 0; i < conflicting_classes.lengh; ++i)
+    {
+        conflicting_classes[i] = parseInt(conflicting_classes[i]);
+    }
+
+    // traverse each class with conflicts
+    for (var i = 0; i < conflicting_classes.length; ++i)
+    {
+        c = conflicting_classes[i];
+        // get list of ids of classes in conflict with
+        conflicts_with = Object.keys(conflictlist[c]['conflicts']);
+
+        for (var j = 0; j < conflicts_with.length; ++j)
+        {
+            conflict_id = parseInt(conflicts_with[j]);
+            conflict_matrix[c][conflict_id] = 1;
+            conflict_matrix[conflict_id][c] = 1;
+        }
+    }
 
     // compute finals probs
     for (i = 0; i < conflicting_classes.length; i++)
