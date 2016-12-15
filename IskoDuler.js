@@ -47,7 +47,7 @@ var iskoduler = function()
     // define variables
     slots_demand_info = [];
     probabilities = [];
-    total_probabilities = [];
+    base_probabilities = [];
     conflicting_classes = Object.keys(conflictlist);
     class_statuses = $("td[id^=td-icon]");
     enlisted_classes_id = []
@@ -56,7 +56,7 @@ var iskoduler = function()
     // check if the Probability column already exist
     // if it exists, return immediately as there is no change in probability
     // note: this function might no longer be needed for IskoDuler 1.1 and above
-    if ($('#tr_class-info-head th').last().text().trim() == 'Probability')
+    if ($('#tr_class-info-head th').last().text().trim() == 'Base Probability')
     {
         return;
     }
@@ -64,6 +64,8 @@ var iskoduler = function()
 
     // add a new "Probability" column
     $('#tr_class-info-head').append('<th>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>');
+    // add a new "Base Probability" column
+    $('#tr_class-info-head').append('<th>Base Probability</th>');
 
     // parse slots and demand and store it to slots_demand_info
     for (i = 0; i < x.length; i++)
@@ -126,22 +128,11 @@ var iskoduler = function()
         }
     }
 
-    // compute finals probs
-    for (i = 0; i < conflicting_classes.length; i++)
-    {
-        affected_classes = Object.keys(conflictlist[conflicting_classes[i]].conflicts);
-        for (j = 0; j < affected_classes.length; j++)
-        {
-            affected_classes[j] = parseInt(affected_classes[j]);
-        }
-        fl = function(x) { return x > conflicting_classes[i] };
-        affected_classes = affected_classes.filter(fl);
+    // save current probability list to base probability list
+    base_probabilities = probabilities.slice();
 
-        for (j = 0; j < affected_classes.length; j++)
-        {
-            probabilities[affected_classes[j]-1] = probabilities[affected_classes[j]-1] * (1.0 - probabilities[conflicting_classes[i]-1]);
-        }
-    }
+
+
 
     // round off final probabilities to the nearest percent
     for (i = 0; i < probabilities.length; i++)
@@ -149,10 +140,17 @@ var iskoduler = function()
         probabilities[i] = parseInt(100 * probabilities[i] + 0.5);
     }
 
+    // round off base probabilities to the nearest percent
+    for (i = 0; i < base_probabilities.length; i++)
+    {
+        base_probabilities[i] = parseInt(100 * base_probabilities[i] + 0.5);
+    }
+
     // add final probabilities to the table
     for (i = 0; i < x.length; i++)
     {
         $(x[i]).append('<td>' + probabilities[i] + '%</td>');
+        $(x[i]).append('<td>' + base_probabilities[i] +  '%&nbsp;<a href="http://www.facebook.com">(?)</a>' + '</td>');
     }
 };
 
