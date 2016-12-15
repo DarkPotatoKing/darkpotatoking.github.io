@@ -1,22 +1,22 @@
 // version info
-current_version = '1.1';
+current_version = `1.1`;
 
 // constants
-latest_jquery = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js';
-latest_version_info = 'https://cdn.rawgit.com/DarkPotatoKing/darkpotatoking.github.io/master/latest_version.js';
+latest_jquery = `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js`;
+latest_version_info = `https://cdn.rawgit.com/DarkPotatoKing/darkpotatoking.github.io/master/latest_version.js`;
 
 // messages
-prompt_update = 'Your IskoDuler bookmark is not updated, please delete the current bookmark and get the newest version at:\n\n'
-              + 'iskoduler.dilimansource.com\n\n';
-prompt_fail = 'There was an error in running the app, please check if you can access:\n\n'
+prompt_update = `Your IskoDuler bookmark is not updated, please delete the current bookmark and get the newest version at:\n\n`
+              + `iskoduler.dilimansource.com\n\n`;
+prompt_fail = `There was an error in running the app, please check if you can access:\n\n`
             + latest_version_info
-            + '\n\nIf you can access the above file, try refreshing your browser and click on the bookmark again. '
-            + 'If it still doesn\'t work, please message our Facebook page.\n\n'
-            + 'facebook.com/IskoDuler\n';
+            + `\n\nIf you can access the above file, try refreshing your browser and click on the bookmark again. `
+            + `If it still doesn\'t work, please message our Facebook page.\n\n`
+            + `facebook.com/IskoDuler\n`;
 
-pre_table_info = $('div[style="float:right; font-weight: bold"]');
-announcement = ["<h1 style='text-align: center'>Note: as of IskoDuler 1.1 using IskoDuler freezes editing. <a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121845411247030/'>(Why?)</a>",
-                "<h2 style='text-align: center'>To edit rankings refresh the page, then edit and save rankings BEFORE using IskoDuler again.</h2>"];
+pre_table_info = $(`div[style="float:right; font-weight: bold"]`);
+announcement = [`<h1 style='text-align: center'>Note: as of IskoDuler 1.1 using IskoDuler freezes editing. <a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121845411247030/'>(Why?)</a>`,
+                `<h2 style='text-align: center'>To edit rankings refresh the page, then edit and save rankings BEFORE using IskoDuler again.</h2>`];
 
 function matrix( rows, cols, defaultValue)
 {
@@ -46,21 +46,21 @@ function matrix( rows, cols, defaultValue)
 var iskoduler = function()
 {
     // get list of enlisted classes
-    x = document.getElementsByClassName('preenlist_conflicts');
+    x = document.getElementsByClassName(`preenlist_conflicts`);
 
     // define variables
     slots_demand_info = [];
     probabilities = [];
     base_probabilities = [];
     conflicting_classes = Object.keys(conflictlist);
-    class_statuses = $("td[id^=td-icon]");
+    class_statuses = $(`td[id^=td-icon]`);
     enlisted_classes_id = []
     conflict_matrix = matrix(21,21, 0);
 
     // check if the Probability column already exist
     // if it exists, return immediately as there is no change in probability
     // note: this function might no longer be needed for IskoDuler 1.1 and above
-    if ($('#tr_class-info-head th').last().text().trim() == 'Base Probability')
+    if ($(`#tr_class-info-head th`).last().text().trim() == `Base Probability`)
     {
         return;
     }
@@ -71,16 +71,16 @@ var iskoduler = function()
     $(announcement[1]).insertBefore(pre_table_info);
 
     // add a new "Probability" column
-    $('#tr_class-info-head').append('<th>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>');
+    $(`#tr_class-info-head`).append(`<th>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
     // add a new "Base Probability" column
-    $('#tr_class-info-head').append('<th>Base Probability</th>');
+    $(`#tr_class-info-head`).append(`<th>Base Probability</th>`);
 
     // parse slots and demand and store it to slots_demand_info
     for (i = 0; i < x.length; i++)
     {
         s = $($(x[i]).children()[3]).text();
-        s = s.substring(s.indexOf('[')+1, s.indexOf(']'));
-        s = s.split('/');
+        s = s.substring(s.indexOf(`[`)+1, s.indexOf(`]`));
+        s = s.split(`/`);
         slots_demand_info.push([parseInt(s[0]), parseInt(s[2])]);
     }
 
@@ -101,7 +101,7 @@ var iskoduler = function()
     // get which classes are enlisted
     for (var i = 0; i < class_statuses.length; ++i)
     {
-        if (class_statuses[i].querySelector('img[title="Enlisted"]') !== null)
+        if (class_statuses[i].querySelector(`img[title="Enlisted"]`) !== null)
         {
             enlisted_classes_id.push(i);
         }
@@ -126,7 +126,7 @@ var iskoduler = function()
     {
         c = conflicting_classes[i];
         // get list of ids of classes in conflict with
-        conflicts_with = Object.keys(conflictlist[c]['conflicts']);
+        conflicts_with = Object.keys(conflictlist[c][`conflicts`]);
 
         for (var j = 0; j < conflicts_with.length; ++j)
         {
@@ -171,8 +171,8 @@ var iskoduler = function()
     // add final probabilities to the table
     for (i = 0; i < x.length; i++)
     {
-        $(x[i]).append('<td>' + probabilities[i] + '%</td>');
-        $(x[i]).append('<td>' + base_probabilities[i] +  '%&nbsp;<a href="http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063">(?)</a>' + '</td>');
+        $(x[i]).append(`<td>` + probabilities[i] + `%</td>`);
+        $(x[i]).append(`<td>` + base_probabilities[i] +  `%&nbsp;<a href="http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063">(?)</a>` + `</td>`);
     }
 };
 
@@ -196,8 +196,8 @@ jQuery.getScript
                 // else, prompt user to download new version
                 else
                 {
-                    prompt_update += 'current version:\t' + current_version + '\n';
-                    prompt_update += 'latest version:\t' + latest_version + '\n';
+                    prompt_update += `current version:\t` + current_version + `\n`;
+                    prompt_update += `latest version:\t` + latest_version + `\n`;
                     alert(prompt_update);
                 }
             }
