@@ -14,7 +14,7 @@ prompt_fail = `There was an error in running the app, please check if you can ac
             + `If it still doesn\'t work, please message our Facebook page.\n\n`
             + `facebook.com/IskoDuler\n`;
 
-pre_table_info = $(`div[style="float:right; font-weight: bold"]`);
+pre_table_info = $(`div[style='float:right; font-weight: bold']`);
 announcement = [`<h1 style='text-align: center'>Note: as of IskoDuler 1.1 using IskoDuler freezes editing. <a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121845411247030/'>(Why?)</a>`,
                 `<h2 style='text-align: center'>To edit rankings refresh the page, then edit and save rankings BEFORE using IskoDuler again.</h2>`];
 
@@ -101,7 +101,7 @@ var iskoduler = function()
     // get which classes are enlisted
     for (var i = 0; i < class_statuses.length; ++i)
     {
-        if (class_statuses[i].querySelector(`img[title="Enlisted"]`) !== null)
+        if (class_statuses[i].querySelector(`img[title='Enlisted']`) !== null)
         {
             enlisted_classes_id.push(i);
         }
@@ -172,7 +172,7 @@ var iskoduler = function()
     for (i = 0; i < x.length; i++)
     {
         $(x[i]).append(`<td>` + probabilities[i] + `%</td>`);
-        $(x[i]).append(`<td>` + base_probabilities[i] +  `%&nbsp;<a href="http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063">(?)</a>` + `</td>`);
+        $(x[i]).append(`<td>` + base_probabilities[i] +  `%&nbsp;<a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063'>(?)</a>` + `</td>`);
     }
 };
 
