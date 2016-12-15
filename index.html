@@ -259,22 +259,31 @@ ul.social li img{
 		<img src="images/iskoduler.png" id="bang"><!--https://s18.postimg.org/ghy5gk32h/logo.png-->
 	</article>
 	<aside>
-<!-- 	<h1>MAKE THE SMART CHOICE</h1>
+	<h1>MAKE THE SMART CHOICE</h1>
 			<p id="top">IskoDuler is the perfect tool to help you
 			efficiently select your classes during pre-enlistment.
 			It shows you the probability of getting each subject so you
 			can correctly prioritize your rankings, and properly select which
 			class to take. Scroll down to learn how to use it.</p>
- -->
+<!--
    <h1>THE APP IS BEING UPDATED</h1>
    <p>Please delete the IskoDuler bookmark in your browser as it still doesn't work for 2nd batchrun. Currently, the app cannot distinguish between subjects you got during the 1st batchrun and classes you're enlisting for the 2nd batchrun. We'll update this asap. Like <a target="_blank" href="https://www.facebook.com/IskoDuler">IskoDuler</a> on Facebook so we can keep you updated.</p>
+-->
  </aside>
 	<div class="clear"></div>
-	<!-- <h1 id="about_us"> How to use IskoDuler </h1>
+	<h1 id="about_us"> How to use IskoDuler </h1>
 	<section>
 		<img src="https://s12.postimg.org/ju8j89wyl/screenshot1.png"/>
 		<h1>Step 1</h1>
-		<p>Drag and drop <a href="javascript:(function(){x = document.getElementsByClassName('preenlist_conflicts');if ($('#tr_class-info-head th').last().text().trim() == 'Probability'){$('#tr_class-info-head th').last().remove();for (i = 0; i < x.length; i++){$(x[i]).find('td').last().remove();}}slots_demand_info = [];probabilities = [];probabilities_complement = [];$('#tr_class-info-head').append('<th>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>');for (i = 0; i < x.length; i++) {s = $($(x[i]).children()[3]).text();s = s.substring(s.indexOf('[')+1, s.indexOf(']'));s = s.split('/');slots_demand_info.push([parseInt(s[0]), parseInt(s[2])]);}for (i = 0; i < slots_demand_info.length; i++) {p = slots_demand_info[i][0]/slots_demand_info[i][1];if (p >=1.0) p = 1.0;probabilities.push(p);}conflicting_classes = Object.keys(conflictlist);for (i = 0; i < conflicting_classes.length; i++){conflicting_classes[i] = parseInt(conflicting_classes[i]);}for (i = 0; i < probabilities.length; i++){probabilities_complement[i] = 1 - probabilities[i];}conflict_table = {};for (i = 0; i < conflicting_classes.length; i++){affected_classes = Object.keys(conflictlist[conflicting_classes[i]].conflicts);for (j = 0; j < affected_classes.length; j++){affected_classes[j] = parseInt(affected_classes[j]);}conflict_table[conflicting_classes[i]] = affected_classes;}final_probs = [];for (i = 1;  i <= x.length; i++ ){prob = probabilities[i-1];if (conflict_table[i] != undefined){for (j = 0; j < conflict_table[i].length; j++){if (conflict_table[i][j] < i){prob *= probabilities_complement[conflict_table[i][j]-1];}}}final_probs.push(prob);}for (i = 0; i < final_probs.length; i++) {final_probs[i] = parseInt(100 * final_probs[i] + 0.5);}for (i = 0; i < final_probs.length; i++) {$(x[i]).append('<td>' + final_probs[i] + '%</td>');}})();">[IskoDuler]</a> (<-- this) to your bookmarks. If your bookmarks toolbar is not visible follow the instructions in the links below.</p>
+		<p>Drag and drop
+		<a href="javascript: (function () {
+    var jsCode = document.createElement('script');
+    jsCode.setAttribute('src', 'https://cdn.rawgit.com/DarkPotatoKing/darkpotatoking.github.io/master/IskoDulerStandalone.js');
+  document.body.appendChild(jsCode);
+ }());">
+		[IskoDuler]
+		</a>
+		(<-- this) to your bookmarks. If your bookmarks toolbar is not visible follow the instructions in the links below.</p>
     <p>
         <a target="_blank" href="https://support.google.com/chrome/answer/95745?hl=en">[Chrome]</a>
         <a target="_blank" href="https://support.mozilla.org/en-US/kb/bookmarks-toolbar-display-favorite-websites">[Firefox]</a>
@@ -291,7 +300,7 @@ ul.social li img{
 		<img src="https://s12.postimg.org/hscn7rod9/screenshot3.png"/>
 		<h1>Step 3</h1>
 		<p>Click on the bookmark and the probability will show as a new column. When you edit your pre-enlisted classes, click on the bookmark again to refresh the probabilities.</p>
-	</section> -->
+	</section>
 	<div class="clear"></div>
 
  <!--
