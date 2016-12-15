@@ -3,7 +3,7 @@ current_version = '1.1';
 
 // constants
 latest_jquery = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js';
-latest_version_info = 'https://rawgit.com/DarkPotatoKing/darkpotatoking.github.io/master/latest_version.js';
+latest_version_info = 'https://cdn.rawgit.com/DarkPotatoKing/darkpotatoking.github.io/master/latest_version.js';
 
 // messages
 prompt_update = 'Your IskoDuler bookmark is not updated, please delete the current bookmark and get the newest version at:\n\n'
