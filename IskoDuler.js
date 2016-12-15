@@ -94,12 +94,14 @@ var iskoduler = function()
     }
 
     // round off final probabilities to the nearest percent
-    for (i = 0; i < probabilities.length; i++) {
+    for (i = 0; i < probabilities.length; i++)
+    {
         probabilities[i] = parseInt(100 * probabilities[i] + 0.5);
     }
 
     // add final probabilities to the table
-    for (i = 0; i < x.length; i++) {
+    for (i = 0; i < x.length; i++)
+    {
         $(x[i]).append('<td>' + probabilities[i] + '%</td>');
     }
 };
