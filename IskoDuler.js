@@ -1,22 +1,10 @@
-// version info
-current_version = `1.1`;
-
 // constants
 latest_jquery = `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js`;
-latest_version_info = `https://cdn.rawgit.com/DarkPotatoKing/darkpotatoking.github.io/master/latest_version.js`;
-
-// messages
-prompt_update = `Your IskoDuler bookmark is not updated, please delete the current bookmark and get the newest version at:\n\n`
-              + `iskoduler.dilimansource.com\n\n`;
-prompt_fail = `There was an error in running the app, please check if you can access:\n\n`
-            + latest_version_info
-            + `\n\nIf you can access the above file, try refreshing your browser and click on the bookmark again. `
-            + `If it still doesn\'t work, please message our Facebook page.\n\n`
-            + `facebook.com/IskoDuler\n`;
 
 pre_table_info = $(`div[style='float:right; font-weight: bold']`);
-announcement = [`<h1 style='text-align: center'>Note: as of IskoDuler 1.1 using IskoDuler freezes editing. <a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121845411247030/'>(Why?)</a>`,
-                `<h2 style='text-align: center'>To edit rankings refresh the page, then edit and save rankings BEFORE using IskoDuler again.</h2>`];
+announcement = [
+    `<h1 style='text-align: center'>Note: as of IskoDuler 1.1 using IskoDuler freezes editing.</h1>`
+];
 
 var matrix = function( rows, cols, defaultValue)
 {
@@ -68,7 +56,6 @@ var iskoduler = function()
 
     // insert announcments
     $(announcement[0]).insertBefore(pre_table_info);
-    $(announcement[1]).insertBefore(pre_table_info);
 
     // add a new "Probability" column
     $(`#tr_class-info-head`).append(`<th>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
@@ -183,32 +170,7 @@ jQuery.getScript
     // load latest version info
     function()
     {
-        jQuery.getScript(latest_version_info)
-        .done
-        (
-            function()
-            {
-                // if IskoDuler is the latest version, run it
-                if (latest_version == current_version)
-                {
-                    iskoduler();
-                }
-                // else, prompt user to download new version
-                else
-                {
-                    prompt_update += `current version:\t` + current_version + `\n`;
-                    prompt_update += `latest version:\t` + latest_version + `\n`;
-                    alert(prompt_update);
-                }
-            }
-        )
-        .fail
-        (
-            function()
-            {
-                alert(prompt_fail);
-            }
-        )
+        iskoduler();
     }
 
 );
