@@ -78,7 +78,7 @@ var iskoduler = function()
     // parse slots and demand and store it to slots_demand_info
     for (i = 0; i < x.length; i++)
     {
-        s = $($(x[i]).children()[3]).text();
+        s = $($(x[i]).children().children()[3]).text();
         s = s.substring(s.indexOf(`[`)+1, s.indexOf(`]`));
         s = s.split(`/`);
         slots_demand_info.push([parseInt(s[0]), parseInt(s[2])]);
@@ -171,8 +171,8 @@ var iskoduler = function()
     // add final probabilities to the table
     for (i = 0; i < x.length; i++)
     {
-        $(x[i]).append(`<td>` + probabilities[i] + `%</td>`);
-        $(x[i]).append(`<td>` + base_probabilities[i] +  `%&nbsp;<a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063'>(?)</a>` + `</td>`);
+        $(x[i]).children().append(`<td>` + probabilities[i] + `%</td>`);
+        $(x[i]).children().append(`<td>` + base_probabilities[i] +  `%&nbsp;<a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063'>(?)</a>` + `</td>`);
     }
 };
 
