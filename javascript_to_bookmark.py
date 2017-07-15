@@ -4,7 +4,7 @@ def is_comment(s):
     return s[0:2] == '//'
 
 # read call_iskoduler.js and store lines to lines array
-with open('IskoDuler.js') as f:
+with open('IskoDulerStandalone.js') as f:
     lines = [ i.strip() for i in f.readlines()]
 
 # remove all lines containing comments
