@@ -3,7 +3,7 @@ let latest_jquery = `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.
 
 let pre_table_info = $(`div[style='float:right; font-weight: bold']`);
 let announcement = [
-  `<h1 style='text-align: center'>Note: as of IskoDuler 1.1 using IskoDuler freezes editing.</h1>`
+  `<h1 style='text-align: center'>Note: IskoDuler DOES NOT automatically recompute probabilities when changing rankings. When you're done editing rankings, click the "Save Rankings" button and once the page is done refreshing, click on the bookmark again to get the updated probabilities.</h1>`
 ];
 
 let matrix = function (rows, cols, defaultValue) {
