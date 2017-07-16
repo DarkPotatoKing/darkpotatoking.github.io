@@ -1,6 +1,6 @@
 {
   "name": "iskoduler",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A CRS helper tool.",
   "main": "IskoDulerStandalone.js",
   "scripts": {
