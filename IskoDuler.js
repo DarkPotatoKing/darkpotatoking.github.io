@@ -27,6 +27,16 @@ let delete_added_columns = function () {
   document.getElementById('base_probability_header').remove();
 }
 
+let insert_announcements = function () {
+    // insert announcments
+  $(announcement[0]).insertBefore(pre_table_info);
+
+  // add a new "Probability" column
+  $(`#tr_class-info-head`).append(`<th id='probability_header'>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
+  // add a new "Base Probability" column
+  $(`#tr_class-info-head`).append(`<th id='base_probability_header'>Base Probability</th>`);
+}
+
 let matrix = function (rows, cols, defaultValue) {
 
   let arr = [];
@@ -79,13 +89,7 @@ let iskoduler = function () {
   }
 
 
-  // insert announcments
-  $(announcement[0]).insertBefore(pre_table_info);
-
-  // add a new "Probability" column
-  $(`#tr_class-info-head`).append(`<th id='probability_header'>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
-  // add a new "Base Probability" column
-  $(`#tr_class-info-head`).append(`<th id='base_probability_header'>Base Probability</th>`);
+  insert_announcements();
 
   // parse slots and demand and store it to slots_demand_info
   for (i = 0; i < x.length; i++) {
