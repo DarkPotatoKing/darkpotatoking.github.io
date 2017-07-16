@@ -27,6 +27,16 @@ let matrix = function (rows, cols, defaultValue) {
   return arr;
 };
 
+let filter_for_nstp_and_econ11 = function(tr_obj) {
+  if (tr_obj.length > 1) {// special case for nstp & econ 11
+    tr_obj = tr_obj.filter(function(i) {
+      return i != 0 && $(this).find(`.td_credits`).html().indexOf(`0.0`) < 0;
+    });
+    tr_obj = $(tr_obj[0]); // not necessary but idk
+  }
+  return tr_obj;
+}
+
 let iskoduler = function () {
   // get list of enlisted classes
   x = document.getElementsByClassName(`preenlist_conflicts`);
@@ -59,11 +69,8 @@ let iskoduler = function () {
   // parse slots and demand and store it to slots_demand_info
   for (i = 0; i < x.length; i++) {
     tr_obj = $(x[i]).children();
-    if (tr_obj.length > 1) {// special case for nstp & econ 11
-      s = $($(tr_obj[1]).children()[1]).text();
-    } else {
-      s = $(tr_obj.children()[3]).text();
-    }
+    tr_obj = filter_for_nstp_and_econ11(tr_obj);
+    s = tr_obj.find(`.td_classname`).text();
     s = s.substring(s.indexOf(`[`)+1, s.indexOf(`]`));
     s = s.split(`/`);
     slots_demand_info.push([parseInt(s[0]), parseInt(s[2])]);
@@ -144,13 +151,14 @@ let iskoduler = function () {
   // add final probabilities to the table
   for (i = 0; i < x.length; i++) {
     var tr_obj = $(x[i]).children();
-    if (tr_obj.length > 1) {// special case for nstp & econ 11
-      $(tr_obj[0]).append(`<td></td><td></td>`); // filler
-      $(tr_obj[2]).append(`<td></td><td></td>`); // filler
-      tr_obj = $(tr_obj[1]);
-    }
+    tr_obj = filter_for_nstp_and_econ11(tr_obj);
     tr_obj.append(`<td>` + probabilities[i] + `%</td>`);
     tr_obj.append(`<td>` + base_probabilities[i] +  `%&nbsp;<a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063'>(?)</a>` + `</td>`);
+
+    empty_tr_objs = $(x[i]).children().filter(function() {
+      return this != tr_obj[0];
+    });
+    empty_tr_objs.append(`<td></td><td></td>`); // filler
   }
 };
 
