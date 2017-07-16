@@ -7,7 +7,12 @@ let announcement = [
 ];
 
 let compute_probabilities = function () {
-    // get list of enlisted classes
+  // add a new "Probability" column
+  $(`#tr_class-info-head`).append(`<th id='probability_header'>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
+  // add a new "Base Probability" column
+  $(`#tr_class-info-head`).append(`<th id='base_probability_header'>Base Probability</th>`);
+
+  // get list of enlisted classes
   x = document.getElementsByClassName(`preenlist_conflicts`);
 
   // define letiables
@@ -139,11 +144,6 @@ let delete_added_columns = function () {
 let insert_announcements = function () {
     // insert announcments
   $(announcement[0]).insertBefore(pre_table_info);
-
-  // add a new "Probability" column
-  $(`#tr_class-info-head`).append(`<th id='probability_header'>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
-  // add a new "Base Probability" column
-  $(`#tr_class-info-head`).append(`<th id='base_probability_header'>Base Probability</th>`);
 }
 
 let matrix = function (rows, cols, defaultValue) {
