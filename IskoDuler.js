@@ -6,70 +6,8 @@ let announcement = [
   `<h1 style='text-align: center'>Note: IskoDuler DOES NOT automatically recompute probabilities when changing rankings. When you're done editing rankings, click the "Save Rankings" button and once the page is done refreshing, click on the bookmark again to get the updated probabilities.</h1>`
 ];
 
-let delete_added_columns = function () {
-  // remove probability column
-  while (document.getElementsByClassName('td_probability').length > 0) {
-    document.getElementsByClassName('td_probability')[0].remove();
-  }
-
-  // remove base probability column
-  while (document.getElementsByClassName('td_base_probability').length > 0) {
-    document.getElementsByClassName('td_base_probability')[0].remove();
-  }
-
-  // remove all filler columns
-  while (document.getElementsByClassName('td_filler').length > 0) {
-    document.getElementsByClassName('td_filler')[0].remove();
-  }
-
-  // remove added table headers
-  document.getElementById('probability_header').remove();
-  document.getElementById('base_probability_header').remove();
-}
-
-let insert_announcements = function () {
-    // insert announcments
-  $(announcement[0]).insertBefore(pre_table_info);
-
-  // add a new "Probability" column
-  $(`#tr_class-info-head`).append(`<th id='probability_header'>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
-  // add a new "Base Probability" column
-  $(`#tr_class-info-head`).append(`<th id='base_probability_header'>Base Probability</th>`);
-}
-
-let matrix = function (rows, cols, defaultValue) {
-
-  let arr = [];
-
-  // Creates all lines:
-  for (let i=0; i < rows; i++) {
-    // Creates an empty line
-    arr.push([]);
-
-    // Adds cols to the empty line:
-    arr[i].push(new Array(cols));
-
-    for(let j=0; j < cols; j++) {
-      // Initializes:
-      arr[i][j] = defaultValue;
-    }
-  }
-
-  return arr;
-};
-
-let filter_for_nstp_and_econ11 = function(tr_obj) {
-  if (tr_obj.length > 1) {// special case for nstp & econ 11
-    tr_obj = tr_obj.filter(function(i) {
-      return i != 0 && $(this).find(`.td_credits`).html().indexOf(`0.0`) < 0;
-    });
-    tr_obj = $(tr_obj[0]); // not necessary but idk
-  }
-  return tr_obj;
-}
-
-let iskoduler = function () {
-  // get list of enlisted classes
+let compute_probabilities = function () {
+    // get list of enlisted classes
   x = document.getElementsByClassName(`preenlist_conflicts`);
 
   // define letiables
@@ -80,16 +18,6 @@ let iskoduler = function () {
   class_statuses = $(`td[id^=td-icon]`);
   enlisted_classes_id = [];
   conflict_matrix = matrix(21,21, 0);
-
-  // check if the Probability column already exist
-  // if it exists, return immediately as there is no change in probability
-  // note: this function might no longer be needed for IskoDuler 1.1 and above
-  if ($(`#tr_class-info-head th`).last().text().trim() == `Base Probability`) {
-    return;
-  }
-
-
-  insert_announcements();
 
   // parse slots and demand and store it to slots_demand_info
   for (i = 0; i < x.length; i++) {
@@ -185,6 +113,81 @@ let iskoduler = function () {
     });
     empty_tr_objs.append(`<td class='td_filler'></td><td class='td_filler'></td>`); // filler
   }
+}
+
+let delete_added_columns = function () {
+  // remove probability column
+  while (document.getElementsByClassName('td_probability').length > 0) {
+    document.getElementsByClassName('td_probability')[0].remove();
+  }
+
+  // remove base probability column
+  while (document.getElementsByClassName('td_base_probability').length > 0) {
+    document.getElementsByClassName('td_base_probability')[0].remove();
+  }
+
+  // remove all filler columns
+  while (document.getElementsByClassName('td_filler').length > 0) {
+    document.getElementsByClassName('td_filler')[0].remove();
+  }
+
+  // remove added table headers
+  document.getElementById('probability_header').remove();
+  document.getElementById('base_probability_header').remove();
+}
+
+let insert_announcements = function () {
+    // insert announcments
+  $(announcement[0]).insertBefore(pre_table_info);
+
+  // add a new "Probability" column
+  $(`#tr_class-info-head`).append(`<th id='probability_header'>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
+  // add a new "Base Probability" column
+  $(`#tr_class-info-head`).append(`<th id='base_probability_header'>Base Probability</th>`);
+}
+
+let matrix = function (rows, cols, defaultValue) {
+
+  let arr = [];
+
+  // Creates all lines:
+  for (let i=0; i < rows; i++) {
+    // Creates an empty line
+    arr.push([]);
+
+    // Adds cols to the empty line:
+    arr[i].push(new Array(cols));
+
+    for(let j=0; j < cols; j++) {
+      // Initializes:
+      arr[i][j] = defaultValue;
+    }
+  }
+
+  return arr;
+};
+
+let filter_for_nstp_and_econ11 = function(tr_obj) {
+  if (tr_obj.length > 1) {// special case for nstp & econ 11
+    tr_obj = tr_obj.filter(function(i) {
+      return i != 0 && $(this).find(`.td_credits`).html().indexOf(`0.0`) < 0;
+    });
+    tr_obj = $(tr_obj[0]); // not necessary but idk
+  }
+  return tr_obj;
+}
+
+let iskoduler = function () {
+  // check if the Probability column already exist
+  // if it exists, return immediately as there is no change in probability
+  // note: this function might no longer be needed for IskoDuler 1.1 and above
+  if ($(`#tr_class-info-head th`).last().text().trim() == `Base Probability`) {
+    return;
+  }
+
+  insert_announcements();
+
+  compute_probabilities();
 };
 
 // load latest jquery before loading the main function
