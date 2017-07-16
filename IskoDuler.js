@@ -3,8 +3,10 @@ let latest_jquery = `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.
 
 let pre_table_info = $(`div[style='float:right; font-weight: bold']`);
 let announcement = [
-  `<h1 style='text-align: center'>Note: IskoDuler DOES NOT automatically recompute probabilities when changing rankings. When you're done editing rankings, click the "Save Rankings" button and once the page is done refreshing, click on the bookmark again to get the updated probabilities.</h1>`
+  `<h1 style='text-align: center'>Note: IskoDuler DOES NOT automatically recompute probabilities when changing rankings. Click the button below to refresh the computations.</h1>`
 ];
+let button = `<input style="width:100%;background-color: #e7e7e7;color: black;font-size:24px;" id="refreshButton" type="button" value="REFRESH" onclick="refresh();" />`;
+
 
 let compute_probabilities = function () {
   // add a new "Probability" column
@@ -144,6 +146,7 @@ let delete_added_columns = function () {
 let insert_announcements = function () {
     // insert announcments
   $(announcement[0]).insertBefore(pre_table_info);
+  $(button).insertBefore(pre_table_info);
 }
 
 let matrix = function (rows, cols, defaultValue) {
@@ -194,3 +197,9 @@ let iskoduler = function () {
 jQuery.getScript(latest_jquery, function () {
   iskoduler();
 });
+
+let refresh = function () {
+  delete_added_columns();
+  compute_probabilities();
+}
+
