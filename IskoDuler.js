@@ -145,12 +145,12 @@ let iskoduler = function () {
   for (i = 0; i < x.length; i++) {
     var tr_obj = $(x[i]).children();
     if (tr_obj.length > 1) {// special case for nstp & econ 11
-      $(tr_obj[0]).append(`<td></td><td></td>`); // filler
-      $(tr_obj[2]).append(`<td></td><td></td>`); // filler
+      $(tr_obj[0]).append(`<td class='td_filler'></td><td class='td_filler'></td>`); // filler
+      $(tr_obj[2]).append(`<td class='td_filler'></td><td class='td_filler'></td>`); // filler
       tr_obj = $(tr_obj[1]);
     }
-    tr_obj.append(`<td>` + probabilities[i] + `%</td>`);
-    tr_obj.append(`<td>` + base_probabilities[i] +  `%&nbsp;<a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063'>(?)</a>` + `</td>`);
+    tr_obj.append(`<td class='td_probability'>` + probabilities[i] + `%</td>`);
+    tr_obj.append(`<td class='td_base_probability'>` + base_probabilities[i] +  `%&nbsp;<a href='http://facebook.com/IskoDuler/photos/a.1102011849897053.1073741828.1101849453246626/1121795081252063'>(?)</a>` + `</td>`);
   }
 };
 
