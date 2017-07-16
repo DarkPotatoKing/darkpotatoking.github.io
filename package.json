@@ -2,7 +2,7 @@
   "name": "iskoduler",
   "version": "1.4.0",
   "description": "A CRS helper tool.",
-  "main": "IskoDuler.js",
+  "main": "IskoDulerStandalone.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
