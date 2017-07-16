@@ -52,9 +52,9 @@ let iskoduler = function () {
   $(announcement[0]).insertBefore(pre_table_info);
 
   // add a new "Probability" column
-  $(`#tr_class-info-head`).append(`<th>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
+  $(`#tr_class-info-head`).append(`<th id='probability_header'>&nbsp;&nbsp;Probability&nbsp;&nbsp;</th>`);
   // add a new "Base Probability" column
-  $(`#tr_class-info-head`).append(`<th>Base Probability</th>`);
+  $(`#tr_class-info-head`).append(`<th id='base_probability_header'>Base Probability</th>`);
 
   // parse slots and demand and store it to slots_demand_info
   for (i = 0; i < x.length; i++) {
