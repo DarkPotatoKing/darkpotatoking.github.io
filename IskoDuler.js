@@ -6,6 +6,27 @@ let announcement = [
   `<h1 style='text-align: center'>Note: IskoDuler DOES NOT automatically recompute probabilities when changing rankings. When you're done editing rankings, click the "Save Rankings" button and once the page is done refreshing, click on the bookmark again to get the updated probabilities.</h1>`
 ];
 
+let delete_added_columns = function () {
+  // remove probability column
+  while (document.getElementsByClassName('td_probability').length > 0) {
+    document.getElementsByClassName('td_probability')[0].remove();
+  }
+
+  // remove base probability column
+  while (document.getElementsByClassName('td_base_probability').length > 0) {
+    document.getElementsByClassName('td_base_probability')[0].remove();
+  }
+
+  // remove all filler columns
+  while (document.getElementsByClassName('td_filler').length > 0) {
+    document.getElementsByClassName('td_filler')[0].remove();
+  }
+
+  // remove added table headers
+  document.getElementById('probability_header').remove();
+  document.getElementById('base_probability_header').remove();
+}
+
 let matrix = function (rows, cols, defaultValue) {
 
   let arr = [];
